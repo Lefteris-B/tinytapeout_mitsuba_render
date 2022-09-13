@@ -17,8 +17,8 @@ if(args["output_width"]!=None):
     RENDER_WIDTH = args["output_width"]
 if(args["output_height"]!=None):
     RENDER_HEIGHT = args["output_height"]
-if(args["spp"]!=None):
-    RENDER_SPP = args["spp"]
+if(args["samples_per_pixel"]!=None):
+    RENDER_SPP = args["samples_per_pixel"]
 
 
 mi.set_variant("scalar_rgb")
