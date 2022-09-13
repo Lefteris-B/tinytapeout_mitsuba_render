@@ -1,9 +1,25 @@
 import mitsuba as mi
+import argparse
 
-RENDER_WIDTH = 1920*2
-RENDER_HEIGHT = 1080*2
+
+RENDER_WIDTH = 1920
+RENDER_HEIGHT = 1080
 # Samples per pixel:
-RENDER_SPP = 8
+RENDER_SPP = 256
+
+argparser = argparse.ArgumentParser(description='Render scene_tinetapeout.xml')
+argparser.add_argument('-width', "--output_width", required=False, type=int, help="Output resolution width")
+argparser.add_argument('-height', "--output_height", required=False, type=int, help="Output resolution height")
+argparser.add_argument('-spp', "--samples_per_pixel", required=False, type=int, help="Render samples per pixel")
+args = vars(argparser.parse_args())
+
+if(args["output_width"]!=None):
+    RENDER_WIDTH = args["output_width"]
+if(args["output_height"]!=None):
+    RENDER_HEIGHT = args["output_height"]
+if(args["spp"]!=None):
+    RENDER_SPP = args["spp"]
+
 
 mi.set_variant("scalar_rgb")
 
