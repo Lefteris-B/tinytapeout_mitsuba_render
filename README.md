@@ -1,10 +1,24 @@
 # tinytapeout_mitsuba_render
 
+Original project from [mbalestrini](https://github.com/mbalestrini): 
+[https://github.com/mbalestrini/tinytapeout_mitsuba_render](https://github.com/mbalestrini/tinytapeout_mitsuba_render)
+
+Works with mitsuba 3
+
+Installation:
+1. Clone repo
+```
+git clone https://github.com/Lefteris-B/tinytapeout_mitsuba_render
+```
+2. Install requirements
+```
+pip install -r requirements.txt
+```
 Usage:
 
 `render_tinytapeout.py [-h] [-width OUTPUT_WIDTH] [-height OUTPUT_HEIGHT] [-spp SAMPLES_PER_PIXEL]`
 
-
+When no arguments are given, script assumes 1920x1080
 
 ## Input files
 Expects theses files to be on the same path:
@@ -30,3 +44,10 @@ Expects theses files to be on the same path:
 - scene_tinytapeout_PERSP.png
 - scene_tinytapeout_TOP.png
 - scene_tinytapeout_TOPLEFT.png
+
+Usage:
+
+`render_tinytapeout_full.py 
+
+Still in working progress.
+Renders the whole gds file.

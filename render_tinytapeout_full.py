@@ -31,6 +31,23 @@ def update_film_size(sensor, width, height):
     # Apply the changes
     params.update()
 
+def set_top_orthographic_view(scene, width, height):
+    sensor = scene.sensors()[1]  # Assuming the second sensor is the top orthographic view
+    bbox = scene.bbox()
+
+    # Calculate the center of the bounding box
+    center = bbox.center()
+
+    # Calculate the scale based on the bounding box dimensions
+    scale = max(bbox.extents().x, bbox.extents().y) / 2
+
+    # Update the camera transformation to fit the entire scene in view
+    to_world = mi.ScalarTransform4f.scale(scale) @ mi.ScalarTransform4f.translate([center.x, center.y, bbox.max.z])
+    
+    params = mi.traverse(sensor)
+    params['to_world'] = to_world
+    params.update()
+
 # Print the bounding box of the scene
 bounding_box = scene.bbox()
 print(f"Bounding box of the scene: min={bounding_box.min}, max={bounding_box.max}")
@@ -42,6 +59,7 @@ mi.util.write_bitmap("scene_tinytapeout_TOPLEFT.png", img, False)
 
 print("Rendering TOP Orthographic view")
 update_film_size(scene.sensors()[1], RENDER_WIDTH, RENDER_HEIGHT)
+set_top_orthographic_view(scene, RENDER_WIDTH, RENDER_HEIGHT)
 img = mi.render(scene, spp=RENDER_SPP, sensor=1)
 mi.util.write_bitmap("scene_tinytapeout_TOP.png", img, False)
 
